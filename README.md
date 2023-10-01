@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# OKX Homepage Clone
 
-## Getting Started
+🔸 okx.com was cloned for hiring case <br>
+🔸 This web app built with using [Next.js](https://nextjs.org/). <br>
 
-First, run the development server:
+Firstly, You should fork/download repo to your github/pc after than
+open the app with VS Code and follow the below commands...
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 💻 Setup <br>
+
+### Install Dependencies
+
+```
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Run the App in the Dev Server
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+```
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### to Build for Production
 
-## Learn More
+```
+npm run build
+```
 
-To learn more about Next.js, take a look at the following resources:
+## 🔥 Technologies and Libraries <br>
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+✔️ Next.js<br>
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## 🚀 App Features <br>
 
-## Deploy on Vercel
+✔️ Tailwindcss, pure css and styled-components is used for css edits. <br>
+✔️ gsap libary is used for advanced animation<br>
+✔️ Optimistic UI<br>
+✔️ All nav bar has animation.ss <br>
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📷 Screenshot <hr>
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+<img src="./app/_assets/ss.png">
+<br>

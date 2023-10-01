@@ -49,6 +49,9 @@ function Logo() {
 function Seperator({ setInside }) {
     return <div onMouseEnter={() => setInside(prev => !prev)} className='max-md:hidden  w-[1px] h-[16px] my-[16px] ml-[20px] md:mr-[10px] bg-[gray]' ></div>
 }
+function SeperatorII({ setInside }) {
+    return <div className='max-md:hidden  w-[1px] h-[16px] my-[16px] ml-[20px] md:mr-[10px] bg-[gray]' ></div>
+}
 
 function NavList({ inside, setInside }) {
 
@@ -186,12 +189,12 @@ function Others() {
         <div className='text-white flex justify-center items-center text-[14px]' >
             <div className='flex justify-center items-start bg-[#252525] max-2xl:hidden mr-6'>
                 <div className='text-lg ml-2 flex justify-center items-center h-[32px] ' > <AiOutlineSearch /> </div>
-                <input className='mr-6 w px-3 py-2 rounded-sm text-xs bg-[#252525]' placeholder='Kripto, ürünleri arayın' />
+                <input className='mr-6 w px-3 py-2 rounded-sm text-xs bg-[#252525] outline-none inpt' placeholder='Kripto, ürünleri arayın' />
             </div>
             <div className='text-xl mr-2 md:mr-6 2xl:hidden' > <AiOutlineSearch /> </div>
             <div className='mr-3 max-md:hidden' >Giriş Yap</div>
             <div className='border px-2 py-1 rounded-xl max-md:mx-3' >Kayıt Ol</div>
-            <Seperator />
+            <SeperatorII />
             <div onClick={() => handleClick()} className='ml-1 text-lg 2xl:hidden'> <AiOutlineMenu /> </div>
             <div className='ml-2 text-2xl max-3xl:hidden flex justify-center items-center icon-wrapper' >
                 <BsDownload className='mr-2' />

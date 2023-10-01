@@ -56,7 +56,7 @@ function SectionThree() {
             <div className='text-white w-[50%] max-sm:w-[100%] flex flex-col justify-center items-center' >
                 <h1 className='text-[46px] max-xl:text-[44px] max-lg:text-[36px] max-md:text-[28px] text-center max-lg:mt-10' >Tek Platform, Sinirsiz Özellik</h1>
                 <div className=' w-[486px] max-lg:w-[300px] h-[66px] my-[28px] grid grid-cols-3 border p-1 rounded-3xl'>
-                    <span ref={ref1} onClick={() => handClick(1)} className={style} >Lite</span>
+                    <span ref={ref1} onClick={() => handClick(1)} style={{ backgroundColor: "white", color: "black" }} className={style} >Lite</span>
                     <span ref={ref2} onClick={() => handClick(2)} className={style} >Web3</span>
                     <span ref={ref3} onClick={() => handClick(3)} className={style} >Pro</span>
                 </div>

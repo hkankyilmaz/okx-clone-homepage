@@ -14,6 +14,10 @@ body {
 .footer li:hover {
   @apply text-[white] cursor-pointer;
 }
+.inpt:focus {
+  outline: none;
+  border: none;
+}
 
 /* 
 --------------------------------------------
