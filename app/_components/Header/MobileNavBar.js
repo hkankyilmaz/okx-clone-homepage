@@ -83,7 +83,7 @@ function MobileNavBar() {
     }
 
     return (
-        <div ref={ref} className='font-light overflow-y-auto absolute h-[100vh] md:w-[500px] text-[whitesmoke] w-[100vw] bg-[#121212] right-0 translate-x-[100%] flex flex-col justify-start pt-14 pb-5 px-5 md:px-10 items-start'>
+        <div ref={ref} className='z-10 font-light overflow-y-auto absolute h-[100vh] md:w-[500px] text-[whitesmoke] w-[100vw] bg-[#121212] right-0 translate-x-[100%] flex flex-col justify-start pt-14 pb-5 px-5 md:px-10 items-start'>
 
 
             <div className='flex justify-start items-center mb-4' >
