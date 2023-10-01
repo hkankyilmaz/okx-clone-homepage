@@ -3,5 +3,229 @@
 @tailwind utilities;
 
 body {
-  @apply bg-[#000000];
+  @apply bg-[#000000] overflow-x-hidden;
+}
+
+/* 
+--------------------------------------------
+Pure Css for ticker-container 
+--------------------------------------------
+*/
+
+.ticker-container {
+  -ms-flex-align: center;
+  align-items: center;
+  background: linear-gradient(100.72deg, #ff8a00, #d449f7);
+  bottom: 0;
+  display: -ms-flexbox;
+  display: flex;
+  height: 50px;
+  position: absolute;
+  white-space: nowrap;
+  width: 100vw;
+}
+
+.ticker-container.hide-ticker {
+  visibility: hidden;
+}
+
+@media (max-width: 767px) {
+  .ticker-container {
+    margin-left: -16px;
+  }
+}
+
+@media (min-width: 768px) {
+  .ticker-container {
+    margin-left: -24px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .ticker-container {
+    margin-left: calc(468px - 50vw);
+  }
+}
+
+@media (min-width: 1270px) {
+  .ticker-container {
+    margin-left: calc(612px - 50vw);
+  }
+}
+
+@media (min-width: 1860px) {
+  .ticker-container {
+    margin-left: calc(852px - 50vw);
+  }
+}
+
+.ticker-container .ticker-viewer {
+  -ms-flex-align: center;
+  align-items: center;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.ticker-container .ticker-viewer .animation-paused,
+.ticker-container .ticker-viewer.ticker-not-view .ticker-scroll,
+.ticker-container .ticker-viewer:hover .ticker-scroll {
+  -webkit-animation-play-state: paused !important;
+  animation-play-state: paused !important;
+}
+
+.ticker-container .ticker-viewer .ticker-scroll {
+  -webkit-transition: all linear;
+  transition: all linear;
+  will-change: transform, opacity;
+}
+
+.ticker-container .ticker-viewer .ticker-scroll.first-animation {
+  -webkit-animation: positionScrollFirst 8s linear forwards;
+  animation: positionScrollFirst 8s linear forwards;
+  position: absolute;
+}
+
+.ticker-container .ticker-viewer .ticker-scroll.infinite-animation {
+  -webkit-animation: tickerScroll 40s linear infinite normal;
+  animation: tickerScroll 40s linear infinite normal;
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+}
+
+.ticker-container .ticker-viewer .ticker-scroll.delay-animation {
+  -webkit-animation-delay: 8s;
+  animation-delay: 8s;
+  opacity: 0;
+}
+
+.ticker-container .ticker-viewer .ticker-scroll.first-animation-overflow {
+  -webkit-animation: positionScrollFirst 16s linear forwards;
+  animation: positionScrollFirst 16s linear forwards;
+  position: absolute;
+}
+
+.ticker-container .ticker-viewer .ticker-scroll.infinite-animation-overflow {
+  -webkit-animation: tickerScroll 80s linear infinite normal;
+  animation: tickerScroll 80s linear infinite normal;
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+}
+
+.ticker-container .ticker-viewer .ticker-scroll.delay-animation-overflow {
+  -webkit-animation-delay: 16s;
+  animation-delay: 16s;
+  opacity: 0;
+}
+
+.ticker-container .ticker-viewer .ticker-item {
+  -ms-flex-align: center;
+  align-items: center;
+  color: #fff;
+  cursor: pointer;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  font-size: 20px;
+  font-weight: 700;
+  margin-left: 57px;
+  -webkit-transition: all;
+  transition: all;
+}
+
+.ticker-container .ticker-viewer .ticker-item span {
+  margin-left: 10px;
+}
+
+.ticker-container .ticker-viewer .ticker-item span:first-child {
+  margin-left: 0;
+}
+
+@-webkit-keyframes tickerScroll {
+  0% {
+    opacity: 1;
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes tickerScroll {
+  0% {
+    opacity: 1;
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%);
+  }
+}
+@-webkit-keyframes positionScroll {
+  0% {
+    -webkit-transform: translateX(20%);
+    transform: translateX(20%);
+  }
+
+  to {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+}
+
+@keyframes positionScroll {
+  0% {
+    -webkit-transform: translateX(20%);
+    transform: translateX(20%);
+  }
+
+  to {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+}
+
+@-webkit-keyframes positionScrollFirst {
+  0% {
+    opacity: 1;
+    -webkit-transform: translateX(20%);
+    transform: translateX(20%);
+  }
+
+  99.9999% {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+}
+
+@keyframes positionScrollFirst {
+  0% {
+    opacity: 1;
+    -webkit-transform: translateX(20%);
+    transform: translateX(20%);
+  }
+
+  99.9999% {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
 }

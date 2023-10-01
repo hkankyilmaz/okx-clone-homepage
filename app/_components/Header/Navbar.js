@@ -127,7 +127,7 @@ function DropDownMenu({ idx, item, handleLeave }) {
 
     return (
         <>
-            <DropItem onMouseLeave={(event) => handleLeave(event)} className={`drop-item-${idx}`} $idx={idx} >
+            <DropItem onMouseLeave={(event) => handleLeave(event)} className={`drop-item-${idx} z-10`} $idx={idx} >
                 {item.subHeads ? item.subHeads?.map((item, idx) =>
                     <div key={`${idx}-a`} className='py-[12px] px-[12px] __xt--pp flex item-center cursor-pointer'>
                         <div className='flex flex-col w-full' >
