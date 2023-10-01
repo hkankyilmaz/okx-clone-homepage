@@ -2,6 +2,7 @@
 
 🔸 okx.com was cloned for hiring case <br>
 🔸 This web app built with using [Next.js](https://nextjs.org/). <br>
+🔸 Click and see live demo... [Here](https://okx-clone-homepage.vercel.app/).
 
 Firstly, You should fork/download repo to your github/pc after than
 open the app with VS Code and follow the below commands...

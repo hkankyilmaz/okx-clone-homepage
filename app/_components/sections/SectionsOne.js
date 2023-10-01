@@ -1,11 +1,35 @@
-import React from 'react'
+"use client"
+
+import React, { useLayoutEffect, useRef } from 'react'
 import Image from 'next/image'
 
 import image1 from "../../_assets/1.webp"
 import image2 from "../../_assets/2.webp"
 import image3 from "../../_assets/3.webp"
 
+import gsap from "gsap"
+
 function SectionsOne() {
+
+    const ref = useRef()
+
+    useLayoutEffect(() => {
+        let ctx = gsap.context(() => {
+            let tl = gsap.timeline();
+            tl.from(ref.current, { y: 40, duration: 1.3 })
+            tl.to(ref.current, { color: "white", background: "linear-gradient(100.72deg, #ff8a00, #d449f7)", duration: 1 })
+            tl.to(ref.current, { scale: 100, autoAlpha: 0, duration: 1.5 })
+            tl.to(ref.current, { scale: 1, autoAlpha: 1, duration: 0.5 })
+            tl.to(ref.current, { rotate: 360 }, "<")
+            console.log("deenem")
+
+        },);
+
+        return () => ctx.revert();
+    }, []);
+
+
+
     return (
         <section className='min-h-[calc(100vh-48px)] text-[whitesmoke] pt-[120px] max-sm:pt-[70px] px-[12px] flex flex-col relative' >
             <div className='flex max-md:flex-col'>
@@ -13,7 +37,7 @@ function SectionsOne() {
                     <div className='leading-[64px] text-[55px] max-xl:text-[46px] max-w-[500px] font-bold max-lg:text-[32px] max-sm:text-[28px] max-sm:text-center'> Ortalama Kripto Borsalarından Daha Hızlı,Daha İyi,Daha Güçlü</div>
                     <div className='mt-[40px] max-md:flex max-md:flex-col max-md:justify-center max-md:items-center'>
                         <input className='py-[14px] max-lg:mr-0 max-lg:py-3 mr-5 px-[20px] border bg-transparent text-[20px] mb-8 max-sm:text-[16px]' placeholder='E-posta/Telefon' />
-                        <button className='text-[20px] max-lg:py-3 px-[44px] py-[23px] bg-white text-black rounded-[35px] max-sm:text-[16px]' >OKX'I Deneyimleyin</button>
+                        <button ref={ref} className='text-[20px] max-lg:py-3 px-[44px] py-[23px] bg-white text-black rounded-[35px] max-sm:text-[16px]' >OKX'I Deneyimleyin</button>
                     </div>
                     <div className='flex justify-start items-center mt-[100px] max-sm:hidden'>
                         <Image alt='faa' className='mr-10' width={185} height={75} src={image1} />
