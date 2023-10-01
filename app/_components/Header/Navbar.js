@@ -11,6 +11,7 @@ import { IoIosArrowDown } from 'react-icons/io';
 import { AiOutlineSearch, AiOutlineMenu, AiOutlineQuestionCircle, AiOutlineBell } from 'react-icons/ai';
 import { BsDownload } from 'react-icons/bs';
 import { TbWorld } from 'react-icons/tb';
+import Link from 'next/link'
 import gsap from 'gsap';
 
 
@@ -37,7 +38,7 @@ function Logo() {
 
     return (
         <div className='flex items-center'>
-            <Image width="82" height="36" className='mr-[5px]' alt='okx' src={logoImage} />
+            <Link className='cursor-pointer' href="/" > <Image width="82" height="36" className='mr-[5px]' alt='okx' src={logoImage} /></Link>
             <div className='text-[11px] text-white flex ml-[20px] max-md:hidden'>
                 <LogoButton onClick={() => setActive({ left: true, right: false })} $active={active.left} className='px-[12px] py-[5px] rounded-[3px' >Borsa</LogoButton>
                 <LogoButton onClick={() => setActive({ left: false, right: true })} $active={active.right} className='px-[12px] py-[5px] rounded-[3px]' >Web3 Cüzdan</LogoButton>
