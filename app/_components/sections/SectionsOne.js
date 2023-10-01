@@ -27,15 +27,18 @@ function SectionsOne() {
                     </div>
                 </div>
                 <div className='w-[50%] max-lg:w-[100%] max-lg:mt-10 max-lg:pb-24 flex justify-center items-center' >
-                    <video className='w-[279px] max-lg:w-[200px] h-auto' src='https://static.okx.com/cdn/assets/files/237/218B8A2E8CF37E47.mp4' />
+                    <video ty src='https://static.okx.com/cdn/assets/files/237/218B8A2E8CF37E47.mp4' style={{ viewTransitionName: "visible" }} muted autoPlay loop playsInline className='w-[279px] max-lg:w-[200px] h-auto flex items-start'>
+                        <track kind='caption' />
+                    </video>
+
                 </div>
 
             </div>
             <div className='ticker-container'>
                 <div className='ticker-viewer'>
                     <div className='ticker-scroll infinite-animation delay-animation flex' >
-                        {Array(20).fill("").map((item) => (
-                            <span className='ticker-item' >BTC $27.175,00 (+%0,77)</span>
+                        {Array(20).fill("").map((item, i) => (
+                            <span key={i} className='ticker-item' >BTC $27.175,00 (+%0,77)</span>
                         ))}
                     </div>
                 </div>

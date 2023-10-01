@@ -52,7 +52,7 @@ function SectionThree() {
 
     return (
         <section className='flex justify-center items-center max-lg:py-[0] py-[120px] px-[12px] max-lg:flex-col-reverse'>
-            <div className='w-[50%] flex justify-center items-center' > <Image alt='faa' className='max-w-[300px]' src={no == 1 ? image1 : no == 2 ? image2 : image3} /> </div>
+            <div className='w-[50%] flex justify-center items-center' > <Image alt='faa' className='max-w-[300px] rounded-[30px]' src={no == 1 ? image1 : no == 2 ? image2 : image3} /> </div>
             <div className='text-white w-[50%] max-sm:w-[100%] flex flex-col justify-center items-center' >
                 <h1 className='text-[46px] max-xl:text-[44px] max-lg:text-[36px] max-md:text-[28px] text-center max-lg:mt-10' >Tek Platform, Sinirsiz Özellik</h1>
                 <div className=' w-[486px] max-lg:w-[300px] h-[66px] my-[28px] grid grid-cols-3 border p-1 rounded-3xl'>
@@ -60,7 +60,7 @@ function SectionThree() {
                     <span ref={ref2} onClick={() => handClick(2)} className={style} >Web3</span>
                     <span ref={ref3} onClick={() => handClick(3)} className={style} >Pro</span>
                 </div>
-                <div ref={ref4} className='h-[200px] max-sm:w-full'>
+                <div ref={ref4} className='h-[200px] max-sm:h-[150px] max-sm:w-full'>
                     {no == 1 ?
                         <p className='text-center text-[20px] mt-[20px] max-lg:text-[18px] max-md:text-[16px]' >Tüm favori zincirlerinizi destekleyen dünyanın en iyi NFT Piyasası,DEXİ'i ve cüzdanını keşfedin.</p>
                         : no == 2 ?

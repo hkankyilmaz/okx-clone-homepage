@@ -5,6 +5,15 @@
 body {
   @apply bg-[#000000] overflow-x-hidden;
 }
+.footer p {
+  @apply text-xl max-sm:text-sm max-md:text-sm mb-2;
+}
+.footer li {
+  @apply text-[gray] font-thin text-sm max-sm:text-sm max-md:text-xs mb-1;
+}
+.footer li:hover {
+  @apply text-[white] cursor-pointer;
+}
 
 /* 
 --------------------------------------------
@@ -53,11 +62,11 @@ Pure Css for ticker-container
   }
 }
 
-@media (min-width: 1860px) {
+/* @media (min-width: 1860px) {
   .ticker-container {
     margin-left: calc(852px - 50vw);
   }
-}
+} */
 
 .ticker-container .ticker-viewer {
   -ms-flex-align: center;

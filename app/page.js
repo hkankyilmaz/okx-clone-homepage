@@ -3,6 +3,9 @@ import Image from 'next/image'
 import SectionsOne from './_components/sections/SectionsOne'
 import SectionTwo from './_components/sections/SectionTwo'
 import SectionThree from './_components/sections/SectionThree'
+import SectionFour from './_components/sections/SectionFour'
+import SectionFive from './_components/sections/SectionFive'
+import SectionSix from './_components/sections/SectionSix'
 
 
 export default function Home() {
@@ -11,7 +14,9 @@ export default function Home() {
       <SectionsOne />
       <SectionTwo />
       <SectionThree />
-
+      <SectionFour />
+      <SectionFive />
+      <SectionSix />
     </main>
   )
 }
