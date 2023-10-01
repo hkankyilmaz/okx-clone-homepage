@@ -23,7 +23,7 @@ ${props =>
 export const DropItem = styled.div`
 
 position: absolute;
-top: calc(100% + 15px);
+top: calc(100%);
 left: 50%;
 transform: translateX(-50%);
 border-radius: 10px;

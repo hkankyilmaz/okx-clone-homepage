@@ -1,22 +1,30 @@
 "use client"
 
-import React, { useState, useLayoutEffect, useRef, useEffect } from 'react'
+import React, { useState, useLayoutEffect, useRef, useEffect, useContext } from 'react'
+import Context from '@/app/_context/context'
 import Image from 'next/image'
 import logoImage from "../../_assets/okx.png"
 import { LogoButton } from './styled'
 import { headerInfo } from '@/app/_assets/headerInfo'
 import { DropItem } from './styled'
 import { IoIosArrowDown } from 'react-icons/io';
+import { AiOutlineSearch, AiOutlineMenu, AiOutlineQuestionCircle, AiOutlineBell } from 'react-icons/ai';
+import { BsDownload } from 'react-icons/bs';
+import { TbWorld } from 'react-icons/tb';
 import gsap from 'gsap';
 
 
 function Navbar() {
 
+    const [inside, setInside] = useState()
     return (
-        <header className='h-[48px] flex items-center'>
-            <Logo />
-            <Seperator />
-            <NavList />
+        <header className='h-[48px] flex items-center w-full justify-between'>
+            <div className='flex' >
+                <Logo />
+                <Seperator setInside={setInside} />
+                <NavList inside={inside} setInside={setInside} />
+            </div>
+            <Others />
         </header>
     )
 }
@@ -30,7 +38,7 @@ function Logo() {
     return (
         <div className='flex items-center'>
             <Image width="82" height="36" className='mr-[5px]' alt='okx' src={logoImage} />
-            <div className='text-[11px] text-white flex ml-[20px]'>
+            <div className='text-[11px] text-white flex ml-[20px] max-md:hidden'>
                 <LogoButton onClick={() => setActive({ left: true, right: false })} $active={active.left} className='px-[12px] py-[5px] rounded-[3px' >Borsa</LogoButton>
                 <LogoButton onClick={() => setActive({ left: false, right: true })} $active={active.right} className='px-[12px] py-[5px] rounded-[3px]' >Web3 Cüzdan</LogoButton>
             </div>
@@ -38,18 +46,22 @@ function Logo() {
     )
 }
 
-function Seperator() {
-    return <div className='w-[1px] h-[16px] my-[16px] ml-[20px] mr-[10px] bg-[gray]' ></div>
+function Seperator({ setInside }) {
+    return <div onMouseEnter={() => setInside(prev => !prev)} className='max-md:hidden  w-[1px] h-[16px] my-[16px] ml-[20px] md:mr-[10px] bg-[gray]' ></div>
 }
 
+function NavList({ inside, setInside }) {
 
-function NavList() {
+    useEffect(() => {
+        ctx.revert();
+        isAnimated.current.index = null
+    }, [inside])
 
 
     const isAnimated = useRef({ status: false, index: null, isGoing: false });
     const refScope = useRef();
     const tl = useRef();
-    const tl_ = useRef();
+
 
     const [ctx] = useState(() => gsap.context(() => { }), refScope);
 
@@ -58,8 +70,8 @@ function NavList() {
             isAnimated.current.isGoing = true
             tl.current = gsap
                 .timeline()
-                .to(`.drop-item-${idx}`, { visibility: "visible", opacity: 1, duration: 0.2 })
-                .from(`.drop-item-${idx}`, { y: 10, duration: 0.5 }, "<")
+                .to(`.drop-item-${idx}`, { visibility: "visible", opacity: 1, duration: 0.1 })
+                .from(`.drop-item-${idx}`, { y: 10, duration: 0.1 }, "<")
                 .then(
                     () => (isAnimated.current = { index: idx, status: true, isGoing: false }),
 
@@ -67,7 +79,7 @@ function NavList() {
         });
 
         ctx.add('removeDropItem', (idx) => {
-            tl_.current = gsap
+            tl.current = gsap
                 .timeline()
                 .to(`.drop-item-${idx}`, { visibility: "hidden", opacity: 0, duration: 0.1 })
 
@@ -85,41 +97,25 @@ function NavList() {
 
         }
     }
-    const handleLeave = (prop) => (event) => {
+    const handleLeave = (event) => {
 
-        if (event.target.tagName == "SPAN") {
-            return;
-        } else if (45 < event.clientY && event.clientY < 70) {
-            return;
-        } else {
-            ctx.removeDropItem(isAnimated.current.index)
-            isAnimated.current.status = false
-            isAnimated.current.index = null
-        }
-    }
-    const handleLeaveScopre = (event) => {
+        ctx.removeDropItem(isAnimated.current.index)
+        isAnimated.current.status = false
+        isAnimated.current.index = null
 
-        console.log("deneme")
-
-        let x = event.target.getBoundingClientRect().x
-        let y = event.target.getBoundingClientRect().y
-
-        let _x = event.clientX
-        let _y = event.clientY
-
-        if (event.target.tagName == "DIV" && (x < _x || event.clientX < _y)) {
-            ctx.removeDropItem(isAnimated.current.index)
-            isAnimated.current.status = false
-            isAnimated.current.index = null
-        }
     }
 
     return (
-        <div ref={refScope} onMouseMove={(event) => handleLeaveScopre(event)} className='flex text-white'>
+        <div ref={refScope} className='flex text-white max-xl+:hidden'>
             {headerInfo.map((item, idx) => (
                 <div onMouseEnter={(e) => handleHover(idx)} key={idx} className='flex cursor-pointer justify-center items-center px-[10px] relative'>
                     <span className='text-sm font-light' >{item.title} </span>
-                    <span className='ml-1' > {idx == 6 ? undefined : <IoIosArrowDown size="0.85em" />} </span>
+                    <span className='ml-1' onMouseEnter={() => {
+                        if (idx == 7) {
+                            setInside(prev => !prev);
+                            isAnimated.current.index = null
+                        }
+                    }} >  {idx == 6 ? undefined : <IoIosArrowDown size="0.85em" />} </span>
                     <DropDownMenu idx={idx} item={item} handleLeave={handleLeave} />
                 </div>
             ))}
@@ -131,7 +127,7 @@ function DropDownMenu({ idx, item, handleLeave }) {
 
     return (
         <>
-            <DropItem onMouseMove={handleLeave} onMouseLeave={handleLeave()} className={`drop-item-${idx}`} $idx={idx} >
+            <DropItem onMouseLeave={(event) => handleLeave(event)} className={`drop-item-${idx}`} $idx={idx} >
                 {item.subHeads ? item.subHeads?.map((item, idx) =>
                     <div key={`${idx}-a`} className='py-[12px] px-[12px] __xt--pp flex item-center cursor-pointer'>
                         <div className='flex flex-col w-full' >
@@ -176,6 +172,34 @@ function DropDownMenu({ idx, item, handleLeave }) {
                 }
             </DropItem>
         </>
+    )
+
+}
+
+function Others() {
+
+    const { isMobileOpen, setIsMobileOpen } = useContext(Context)
+
+    const handleClick = () => setIsMobileOpen(prev => !prev)
+
+    return (
+        <div className='text-white flex justify-center items-center text-[14px]' >
+            <div className='flex justify-center items-start bg-[#252525] max-2xl:hidden mr-6'>
+                <div className='text-lg ml-2 flex justify-center items-center h-[32px] ' > <AiOutlineSearch /> </div>
+                <input className='mr-6 w px-3 py-2 rounded-sm text-xs bg-[#252525]' placeholder='Kripto, ürünleri arayın' />
+            </div>
+            <div className='text-xl mr-2 md:mr-6 2xl:hidden' > <AiOutlineSearch /> </div>
+            <div className='mr-3 max-md:hidden' >Giriş Yap</div>
+            <div className='border px-2 py-1 rounded-xl max-md:mx-3' >Kayıt Ol</div>
+            <Seperator />
+            <div onClick={() => handleClick()} className='ml-1 text-lg 2xl:hidden'> <AiOutlineMenu /> </div>
+            <div className='ml-2 text-2xl max-3xl:hidden flex justify-center items-center icon-wrapper' >
+                <BsDownload className='mr-2' />
+                <AiOutlineBell className='mr-2' />
+                <AiOutlineQuestionCircle className='mr-2' />
+                <TbWorld />
+            </div>
+        </div>
     )
 
 }
