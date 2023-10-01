@@ -2,7 +2,6 @@
 
 import React, { useState, useLayoutEffect, useRef, useEffect } from 'react'
 import Image from 'next/image'
-import { styled } from 'styled-components'
 import logoImage from "../../_assets/okx.png"
 import { LogoButton } from './styled'
 import { headerInfo } from '@/app/_assets/headerInfo'
@@ -83,7 +82,7 @@ function NavList() {
             ctx.revert();
             ctx.openDropItem(idx);
             ctx.removeDropItem(isAnimated.current.index)
-            console.log(idx)
+
         }
     }
     const handleLeave = (prop) => (event) => {
@@ -97,11 +96,26 @@ function NavList() {
             isAnimated.current.status = false
             isAnimated.current.index = null
         }
+    }
+    const handleLeaveScopre = (event) => {
 
+        console.log("deneme")
+
+        let x = event.target.getBoundingClientRect().x
+        let y = event.target.getBoundingClientRect().y
+
+        let _x = event.clientX
+        let _y = event.clientY
+
+        if (event.target.tagName == "DIV" && (x < _x || event.clientX < _y)) {
+            ctx.removeDropItem(isAnimated.current.index)
+            isAnimated.current.status = false
+            isAnimated.current.index = null
+        }
     }
 
     return (
-        <div ref={refScope} onMouseLeave={handleLeave} className='flex text-white'>
+        <div ref={refScope} onMouseMove={(event) => handleLeaveScopre(event)} className='flex text-white'>
             {headerInfo.map((item, idx) => (
                 <div onMouseEnter={(e) => handleHover(idx)} key={idx} className='flex cursor-pointer justify-center items-center px-[10px] relative'>
                     <span className='text-sm font-light' >{item.title} </span>
@@ -115,61 +129,53 @@ function NavList() {
 
 function DropDownMenu({ idx, item, handleLeave }) {
 
-    return <DropItem onMouseMove={handleLeave} onMouseLeave={handleLeave()} className={`drop-item-${idx}`} $idx={idx} >
-        {item.subHeads ? item.subHeads?.map((item, index) =>
-            <div key={idx} className='py-[12px] px-[12px] __xt--pp flex item-center cursor-pointer'>
-                <div className='flex flex-col w-full' >
-                    <div className='text-[14px] text-black __xt'>{item.title} </div>
-                    <div className='text-[12px] text-[gray] __xt'> {item.description}</div>
-                    <div style={{ width: item.title == "Earn" ? "100%" : "60%" }} className='text-[14px] grid grid-cols-2 mt-1 text-black' >
-                        {item?.subHeads?.map((item) => (
-                            <div className='mr-5' > {item.title} </div>
-                        ))}
-                    </div>
-                </div>
-            </div>
-        ) : item.sectionsHover ?
-            item.sectionsHover.map((item) => (
-                <div>
-                    <div className='text-[gray]' > {item.title} </div>
-                    {item.subHeads?.map((item, idx) =>
-                        <div key={idx} className='py-[12px] px-[12px] __xt--pp flex item-center cursor-pointer'>
-                            <div className='flex flex-col w-full' >
-                                <div className='text-[14px] text-black __xt'>{item.title} </div>
-                                <div className='text-[12px] text-[gray] __xt'> {item.description}</div>
+    return (
+        <>
+            <DropItem onMouseMove={handleLeave} onMouseLeave={handleLeave()} className={`drop-item-${idx}`} $idx={idx} >
+                {item.subHeads ? item.subHeads?.map((item, idx) =>
+                    <div key={`${idx}-a`} className='py-[12px] px-[12px] __xt--pp flex item-center cursor-pointer'>
+                        <div className='flex flex-col w-full' >
+                            <div className='text-[14px] text-black __xt'>{item.title} </div>
+                            <div className='text-[12px] text-[gray] __xt'> {item.description}</div>
+                            <div style={{ width: item.title == "Earn" ? "100%" : "60%" }} className='text-[14px] grid grid-cols-2 mt-1 text-black' >
+                                {item?.subHeads?.map((item, idx) => (
+                                    <div key={`${idx}-b`} className='mr-5' > {item.title} </div>
+                                ))}
                             </div>
                         </div>
-                    )}
-                </div>
-
-            ))
-            : item.sections ?
-                <div className='flex'>
-                    {item.sections?.map((item, idx) =>
-                        <div className='flex flex-col py-[12px] px-[12px] item-center cursor-pointer'>
-                            <div className='text-[12px] text-[gray] __xt' > {item.title} </div>
-                            {item.subHeads.map((item) => (
-                                <div className='text-[14px] p-2 flex text-black __xt--pp __xt' > {item.title} </div>
-                            ))}
+                    </div>
+                ) : item.sectionsHover ?
+                    item.sectionsHover.map((item, idx) => (
+                        <div key={`${idx}-z`} >
+                            <div className='text-[gray]' > {item.title} </div>
+                            {item.subHeads?.map((item, idx) =>
+                                <div key={`${idx}-c`} className='py-[12px] px-[12px] __xt--pp flex item-center cursor-pointer'>
+                                    <div className='flex flex-col w-full' >
+                                        <div className='text-[14px] text-black __xt'>{item.title} </div>
+                                        <div className='text-[12px] text-[gray] __xt'> {item.description}</div>
+                                    </div>
+                                </div>
+                            )}
                         </div>
 
-                    )}
-                </div>
-                : undefined
+                    ))
+                    : item.sections ?
+                        <div className='flex'>
+                            {item.sections?.map((item, idx) =>
+                                <div key={`${idx}-d`} className='flex flex-col py-[12px] px-[12px] item-center cursor-pointer'>
+                                    <div className='text-[12px] text-[gray] __xt' > {item.title} </div>
+                                    {item.subHeads.map((item, idx) => (
+                                        <div key={`${idx}-e`} className='text-[14px] p-2 flex text-black __xt--pp __xt' > {item.title} </div>
+                                    ))}
+                                </div>
 
-        }
-        {/* <div className='w-full h-full' > {item?.sectionsHover?.map((item) => (
-            <div className='text-[14px] grid w-[60%] grid-cols-2 mt-1 text-black' >
-                <div key={idx} className='py-[12px] px-[12px] __xt--pp flex item-center cursor-pointer'>
-                    <div className='flex flex-col w-full' >
-                        <div className='text-[14px] text-black __xt'>{item?.subHeads[0]?.subHeads[0].title} </div>
-                        <div className='text-[12px] text-[gray] __xt'> {item?.subHeads[0]?.subHeads[0].description}</div>
-                    </div>
-                </div>
-            </div>
+                            )}
+                        </div>
+                        : undefined
 
-
-        ))} </div> */}
-    </DropItem>
+                }
+            </DropItem>
+        </>
+    )
 
 }
