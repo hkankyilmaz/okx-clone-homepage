@@ -1,6 +1,6 @@
 # OKX Homepage Clone
 
-🔸 okx.com was cloned for hiring case <br>
+🔸 okx.com homepage clone  <br>
 🔸 This web app built with using [Next.js](https://nextjs.org/). <br>
 🔸 Click and see live demo... [Here](https://okx-clone-homepage.vercel.app/).
 
